@@ -2,7 +2,8 @@
     
   ],
   "posts": [
-    { "id": 1, "title": "json-server0915", "author": "typicode" }
+    { "id": 1, "title": "json-server0915", "author": "typicode" },
+    { "id": 2, "title": "json-server1020", "author": "Berlin" }
   ],
   "comments": [
     { "id": 1, "body": "some comment", "postId": 1 }
