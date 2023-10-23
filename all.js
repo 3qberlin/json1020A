@@ -1,4 +1,5 @@
 let token = '';
+var _targetUrl = "https://json1020a.onrender.com";
 
 const registerName = document.querySelector('.registerName');
 const registerPassword = document.querySelector('.registerPassword');
