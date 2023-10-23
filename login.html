@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wellcom to Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="bg-info d-flex justify-content-between align-items-center">
+            <div><a href="index.html" class="text-decoration-none">LOGO</a></div>
+            <ul class="list-unstyled my-auto">
+                <li class="d-flex  align-items-center">
+                    <div class="btn btn-success"><a href="login.html" class="text-decoration-none text-white">登入</a>
+                    </div>
+                    <div class="btn btn-warning ms-3"><a href="regis.html" class="text-decoration-none text-dark">註冊</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-title">登入</div>
+            <div class="form">
+                <div class="card-body">
+
+                    <input type="text" placeholder="輸入帳號" class="inputName mb-3 ">
+                    <br>
+                    <input type="password" placeholder="輸入密碼" class="inputPassword">
+                    <input type="submit" value="送出" class="inputSubmit">
+                    <div><a href="index.html">回首頁</a></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"
+        integrity="sha512-emSwuKiMyYedRwflbZB2ghzX8Cw8fmNVgZ6yQNNXXagFzFOaQmbvQ1vmDkddHjm5AITcBIZfC7k4ShQSjgPAmQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script>
+        const inputName = document.querySelector('.inputName');
+        const inputPassword = document.querySelector('.inputPassword');
+        const inputSubmit = document.querySelector('.inputSubmit');
+
+        inputSubmit.addEventListener('click', function (e) {
+            login();
+        });
+
+        function login() {
+            axios.post("http://localhost:3000/signin", {
+                "email": inputName.value,
+                "password": inputPassword.value
+            })
+                .then(function (res) {
+                    console.log('res', res.data);
+                    location.href = `admin.html`;
+                })
+        }
+    </script>
+
+</body>
+
+</html>

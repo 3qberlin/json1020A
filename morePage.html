@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MorePage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="bg-info d-flex justify-content-between align-items-center">
+            <div><a href="index.html" class="text-decoration-none">LOGO</a></div>
+            <ul class="list-unstyled my-auto">
+                <li class="d-flex  align-items-center">
+                    <div class="btn btn-success"><a href="collection.html"
+                            class="text-decoration-none text-white">收藏</a>
+                    </div>
+                    <div class="btn btn-warning ms-3"><a href="regis.html" class="text-decoration-none text-dark">註冊</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+
+        <h2>景點內文</h2>
+        <div class="collection">
+            <a href="#" class="textCollect">未收藏</a>
+        </div>
+        <div class="perContent">
+
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"
+        integrity="sha512-emSwuKiMyYedRwflbZB2ghzX8Cw8fmNVgZ6yQNNXXagFzFOaQmbvQ1vmDkddHjm5AITcBIZfC7k4ShQSjgPAmQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="all.js"></script>
+    <script>
+        let id = parseInt(location.href.split('=')[1]);
+        console.log('id', id);
+        var perContent = document.querySelector('.perContent');
+        var collection = document.querySelector('.collection a');
+        var collections = document.querySelector('.collections');
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+        let final = '';
+
+
+        collection.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (collection.textContent === '未收藏') {
+                collection.textContent = '收藏';
+                axios.get('http://localhost:3000/views')
+                    .then(function (response) {
+                        let data = response;
+                        if (id === 0) {
+                            let final = data.data[0];
+                            console.log('final', final);
+                            axios.post('http://localhost:3000/collects', {
+                                "id": final.id,
+                                "name": final.name,
+                                "description": final.description
+                            })
+                                .then(function (res) {
+                                    console.log('res', res);
+                                })
+                                .catch(function (error) {
+                                    console.log(error);
+                                });
+                        } else if (id === 1) {
+                            let final = data.data[1];
+                            console.log('final', final);
+                            axios.post('http://localhost:3000/collects', {
+                                "id": final.id,
+                                "name": final.name,
+                                "description": final.description
+                            })
+                                .then(function (res) {
+                                    console.log('res', res);
+                                })
+                                .catch(function (error) {
+                                    console.log(error);
+                                });
+                        } else if (id === 2) {
+                            let final = data.data[2];
+                            console.log('final', final);
+                            axios.post('http://localhost:3000/collects', {
+                                "id": final.id,
+                                "name": final.name,
+                                "description": final.description
+                            })
+                                .then(function (res) {
+                                    console.log('res', res);
+                                })
+                                .catch(function (error) {
+                                    console.log(error);
+                                });
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(function () {
+                    });
+            } else {
+                collection.textContent = '未收藏';
+
+                axios.get('http://localhost:3000/views')
+                    .then(function (response) {
+                        let data = response;
+                        console.log('data', data);
+                        if (id === 0) {
+                            deleteData(id + 1)
+                        } else if (id === 1) {
+                            deleteData(id + 1)
+                        } else if (id === 2) {
+                            deleteData(id + 1)
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(function () {
+                    });
+            } {
+            }
+        })
+
+        function deleteData(id) {
+            axios.delete(`http://localhost:3000/collects/${id}`)
+                .then(function (response) {
+                    console.log(`成功刪除 ID ${id}`, response);
+                    renderData();
+                })
+                .catch(function (error) {
+                    console.log(`刪除 ID ${id} 失敗`, error);
+                });
+        }
+
+        function Content() {
+
+            let requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+            };
+            let data;
+            fetch("http://localhost:3000/views", requestOptions)
+                .then(response => response.text())
+                .then(result => {
+                    data = JSON.parse(result);
+                    let str = '';
+                    if (id == 0) {
+                        str = JSON.stringify(data[0]);
+                    } else if (id == 1) {
+                        str = JSON.stringify(data[1]);
+                    } else if (id == 2) {
+                        str = JSON.stringify(data[2]);
+                    }
+                    let temp = data.id;
+                    console.log('temp', temp);
+                    perContent.innerHTML += str;
+                })
+                .catch(error => console.log('error', error)
+                );
+        }
+
+        Content();
+    </script>
+</body>
+
+</html>
