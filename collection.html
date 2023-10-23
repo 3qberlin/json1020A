@@ -45,104 +45,52 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <script>
-        // var collects = document.querySelector('.collections');
-        // var deleteOption = document.querySelector('.delete');
-        // let str = '';
-        // axios.get('http://localhost:3000/collects'
-        // ).then(function (res) {
-        //     console.log('res', res);
-        //     let data = res.data;
-        //     for (let i = 0; i < data.length; i++) {
-        //         const newID = data[i].id;
-        //         const newName = data[i].name;
-        //         const newDescription = data[i].description;
-        //         str += `<li class='m-2 p-3 border rounded-5 text-truncation'>${newID}${newName}${newDescription}<br><div class='btn btn-primary delete' id='${newID}'>刪除</div></li>`;
-        //     }
-        //     collects.innerHTML = str;
-        // });
 
-        // collects.addEventListener('click', function (event) {
-        //     if (event.target.classList.contains('delete')) {
-        //         console.log('abcThis');
-        //         axios.get('http://localhost:3000/collects'
-        //         ).then(function (res) {
-        //             console.log('res', res);
-        //             let data = res.data;
-        //             if (data.id == 1) {
-        //                 axios.delete('http://localhost:3000/collects/1')
-        //                     .then(function (response) {
-        //                         console.log('DELETE 成功', response);
-        //                     })
-        //                     .catch(function (error) {
-        //                         console.log('DELETE 失敗', error);
-        //                     });
-        //             } else if (data.id == 2) {
-        //                 axios.delete('http://localhost:3000/collects/2')
-        //                     .then(function (response) {
-        //                         console.log('DELETE 成功', response);
-        //                     })
-        //                     .catch(function (error) {
-        //                         console.log('DELETE 失敗', error);
-        //                     });
-        //             } else if (data.id == 3) {
-        //                 axios.delete('http://localhost:3000/collects/3')
-        //                     .then(function (response) {
-        //                         console.log('DELETE 成功', response);
-        //                     })
-        //                     .catch(function (error) {
-        //                         console.log('DELETE 失敗', error);
-        //                     });
-        //             }
-        //         })
-
-
-        //     }
-        // });
         var collects = document.querySelector('.collections');
-let str = '';
+        let str = '';
 
-// 定義一個函數來處理刪除資料的操作
-function deleteData(id) {
-    axios.delete(`http://localhost:3000/collects/${id}`)
-        .then(function (response) {
-            console.log(`成功刪除 ID ${id}`, response);
-            // 刪除成功後，您可能需要重新渲染 UI 以反映更新的資料
-            // 可以再次呼叫您的渲染函數
-            renderData();
-            location.reload();
-        })
-        .catch(function (error) {
-            console.log(`刪除 ID ${id} 失敗`, error);
-        });
-}
+        // 定義一個函數來處理刪除資料的操作
+        function deleteData(id) {
+            axios.delete(`${_targetUrl}/collects/${id}`)
+                .then(function (response) {
+                    console.log(`成功刪除 ID ${id}`, response);
+                    // 刪除成功後，您可能需要重新渲染 UI 以反映更新的資料
+                    // 可以再次呼叫您的渲染函數
+                    renderData();
+                    location.reload();
+                })
+                .catch(function (error) {
+                    console.log(`刪除 ID ${id} 失敗`, error);
+                });
+        }
 
-// 定義一個函數來渲染資料
-function renderData() {
-    axios.get('http://localhost:3000/collects')
-        .then(function (res) {
-            console.log('res', res);
-            let data = res.data;
-            for (let i = 0; i < data.length; i++) {
-                const newID = data[i].id;
-                const newName = data[i].name;
-                const newDescription = data[i].description;
-                str += `<li class='m-2 p-3 border rounded-5 text-truncation'>${newID}${newName}${newDescription}<br><button class='btn btn-primary delete' data-id='${newID}'>刪除</button></li>`;
+        // 定義一個函數來渲染資料
+        function renderData() {
+            axios.get(`${_targetUrl}/collects`)
+                .then(function (res) {
+                    console.log('res', res);
+                    let data = res.data;
+                    for (let i = 0; i < data.length; i++) {
+                        const newID = data[i].id;
+                        const newName = data[i].name;
+                        const newDescription = data[i].description;
+                        str += `<li class='m-2 p-3 border rounded-5 text-truncation'>${newID}${newName}${newDescription}<br><button class='btn btn-primary delete' data-id='${newID}'>刪除</button></li>`;
+                    }
+                    collects.innerHTML = str;
+                });
+        }
+
+        // 最初的資料渲染
+        renderData();
+
+        collects.addEventListener('click', function (event) {
+            if (event.target.classList.contains('delete')) {
+                // 確定點擊的元素是 "刪除" 按鈕
+                const idToDelete = event.target.getAttribute('data-id'); // 獲取data-id屬性
+                deleteData(idToDelete);
+
             }
-            collects.innerHTML = str;
         });
-}
-
-// 最初的資料渲染
-renderData();
-
-collects.addEventListener('click', function (event) {
-    if (event.target.classList.contains('delete')) {
-        // 確定點擊的元素是 "刪除" 按鈕
-        const idToDelete = event.target.getAttribute('data-id'); // 獲取data-id屬性
-        deleteData(idToDelete);
-        
-    }
-});
 
     </script>
 </body>

@@ -61,7 +61,7 @@
         });
 
         function login() {
-            axios.post("http://localhost:3000/signin", {
+            axios.post(`${_targetUrl}/signin`, {
                 "email": inputName.value,
                 "password": inputPassword.value
             })

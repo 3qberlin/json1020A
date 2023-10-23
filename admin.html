@@ -45,30 +45,30 @@
 </body>
 <script>
 
-var mainUl = document.querySelector('.mailUl');
+    var mainUl = document.querySelector('.mailUl');
 
-  function show() {
+    function show() {
 
-    var requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
-    };
-    let data;
-    fetch("http://localhost:3000/views", requestOptions)
-      .then(response => response.text())
-      .then(result => {
-        data = JSON.parse(result);
-        let str = '';
-        for (let i = 0; i < data.length; i++) {
-          str += `<li><h2> ${data[i].name} </h2>${data[i].description} <br> <a class="btn btn-primary" href="morePage.html?id=${i}" >查看更多</a></li>`
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
         };
-        mainUl.innerHTML += str;
-      })
-      .catch(error => console.log('error', error)
-      );
-  }
+        let data;
+        fetch(`${_targetUrl}/views`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                data = JSON.parse(result);
+                let str = '';
+                for (let i = 0; i < data.length; i++) {
+                    str += `<li><h2> ${data[i].name} </h2>${data[i].description} <br> <a class="btn btn-primary" href="morePage.html?id=${i}" >查看更多</a></li>`
+                };
+                mainUl.innerHTML += str;
+            })
+            .catch(error => console.log('error', error)
+            );
+    }
 
-  show();
+    show();
 </script>
 
 </html>

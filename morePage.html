@@ -64,13 +64,13 @@
             e.preventDefault();
             if (collection.textContent === '未收藏') {
                 collection.textContent = '收藏';
-                axios.get('http://localhost:3000/views')
+                axios.get(`${_targetUrl}/views`)
                     .then(function (response) {
                         let data = response;
                         if (id === 0) {
                             let final = data.data[0];
                             console.log('final', final);
-                            axios.post('http://localhost:3000/collects', {
+                            axios.post(`${_targetUrl}/collects`, {
                                 "id": final.id,
                                 "name": final.name,
                                 "description": final.description
@@ -84,7 +84,7 @@
                         } else if (id === 1) {
                             let final = data.data[1];
                             console.log('final', final);
-                            axios.post('http://localhost:3000/collects', {
+                            axios.post(`${_targetUrl}/collects`, {
                                 "id": final.id,
                                 "name": final.name,
                                 "description": final.description
@@ -98,7 +98,7 @@
                         } else if (id === 2) {
                             let final = data.data[2];
                             console.log('final', final);
-                            axios.post('http://localhost:3000/collects', {
+                            axios.post(`${_targetUrl}/collects`, {
                                 "id": final.id,
                                 "name": final.name,
                                 "description": final.description
@@ -119,7 +119,7 @@
             } else {
                 collection.textContent = '未收藏';
 
-                axios.get('http://localhost:3000/views')
+                axios.get(`${_targetUrl}/views`)
                     .then(function (response) {
                         let data = response;
                         console.log('data', data);
@@ -141,7 +141,7 @@
         })
 
         function deleteData(id) {
-            axios.delete(`http://localhost:3000/collects/${id}`)
+            axios.delete(`${_targetUrl}/collects/${id}`)
                 .then(function (response) {
                     console.log(`成功刪除 ID ${id}`, response);
                     renderData();
@@ -158,7 +158,7 @@
                 redirect: 'follow'
             };
             let data;
-            fetch("http://localhost:3000/views", requestOptions)
+            fetch(`${_targetUrl}/views`, requestOptions)
                 .then(response => response.text())
                 .then(result => {
                     data = JSON.parse(result);
