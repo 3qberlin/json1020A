@@ -9,6 +9,21 @@
       "email": "admin@gmail.com",
       "password": "$2a$10$0JD7Q1X8ARoCEvx/vGsxHuitupdGG5oDE7.0pMpMIP/By/ZGL8V8O",
       "id": 2
+    },
+    {
+      "email": "t222@gmail.com",
+      "password": "$2a$10$sEJeKRoWJS1BqLwBUfndmOdo0GLAP1K6LU5a34DaLpJlGLbYzt4ki",
+      "id": 3
+    },
+    {
+      "email": "t333@gmail.com",
+      "password": "$2a$10$qf6r496fBhOYpdefgBUFHupTJdnbb2uY/xgzHEVx9KlMMzqdp9tQ6",
+      "id": 4
+    },
+    {
+      "email": "t444@gmail.com",
+      "password": "$2a$10$U9dhHIGhTdu1HHLHce5xwOv.WwemcBiMCg1LVYTbx93HYSHL3fBZS",
+      "id": 5
     }
   ],
   "views": [
@@ -26,6 +41,21 @@
       "id": 3,
       "name": "紫坪",
       "description": "紫坪位在綠島最南方，從附近的步道，可通往海岸邊的潟湖。此處是由珊瑚礁構成的潮池，也是綠島著名的潟湖所在地，有全綠島最完整的潟湖地形以及珊瑚礁植群，更有茂盛的植物水芫花和珍貴的陸寄居蟹。"
+    },
+    {
+      "id": 4,
+      "name": "sss",
+      "description": "0000"
+    },
+    {
+      "name": "555",
+      "lastName": "998989",
+      "id": 5
+    },
+    {
+      "name": "ssss",
+      "description": "ggggg",
+      "id": 6
     }
   ],
   "collects": []

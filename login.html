@@ -47,12 +47,13 @@
         </div>
 
     </div>
+    <script src="all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"
         integrity="sha512-emSwuKiMyYedRwflbZB2ghzX8Cw8fmNVgZ6yQNNXXagFzFOaQmbvQ1vmDkddHjm5AITcBIZfC7k4ShQSjgPAmQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <script>
-        var _targetUrl = "https://json1020a.onrender.com";
+        // var _targetUrl = "https://json1020a.onrender.com";
 
         const inputName = document.querySelector('.inputName');
         const inputPassword = document.querySelector('.inputPassword');
@@ -68,8 +69,21 @@
                 "password": inputPassword.value
             })
                 .then(function (res) {
-                    console.log('res', res.data);
-                    location.href = `admin.html`;
+                    // console.log('res.data', res.data);
+                    // console.log('res.data[1]', res.data[1]);
+                    // console.log('res',res)
+                    // let data = res;
+                    // console.log('data',data);
+
+                    let email = res.data.user.email;
+                    console.log("Email",email);
+                    console.log('email', res.data.user.email);
+                    if(email === 'admin@gmail.com'){
+                        location.href = `admin.html`;
+                    }else{
+                        location.href = `normal.html`;
+                    }
+                    // location.href = `normal.html`;
                 })
         }
     </script>
